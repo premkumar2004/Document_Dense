@@ -313,76 +313,76 @@ app.post('/table',async (req, res) => {
 });
 
 
-const { ChartJSNodeCanvas } = require('chartjs-node-canvas');
-const { array } = require('mongoose/lib/utils');
+// const { ChartJSNodeCanvas } = require('chartjs-node-canvas');
+// const { array } = require('mongoose/lib/utils');
 
 
 
 
 
 
-const canvasRenderService = new ChartJSNodeCanvas({ width: 800, height: 400});
+// const canvasRenderService = new ChartJSNodeCanvas({ width: 800, height: 400});
 
-app.get('/chart', async (req, res) => {
-  try {
-    // Fetch data from MongoDB using Mongoose
-    const data = await Item.find().exec();
-   let arr=[]
-    // Process the data if necessary
-    const labels =['IT','CSE','MECH','MTS','EEE','ECE']
-    for (var i=0;i<6;i++){
-      const totalCount = await Item.countDocuments({Department:labels[i]});
-      arr.push(totalCount)
+// app.get('/chart', async (req, res) => {
+//   try {
+//     // Fetch data from MongoDB using Mongoose
+//     const data = await Item.find().exec();
+//    let arr=[]
+//     // Process the data if necessary
+//     const labels =['IT','CSE','MECH','MTS','EEE','ECE']
+//     for (var i=0;i<6;i++){
+//       const totalCount = await Item.countDocuments({Department:labels[i]});
+//       arr.push(totalCount)
        
 
-    }
+//     }
     
 
 
-    const values =arr
-    console.log(values)
+//     const values =arr
+//     console.log(values)
 
-    // Create a bar chart using Chart.js Node Canvas
-    const configuration = {
-      type: 'bar',
-      data: {
-        labels: labels,
-        datasets: [{
-          label: 'Data from MongoDB',
-          data: values,
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.5)',   // Red
-            'rgba(54, 162, 235, 0.5)',  // Blue
-            'rgba(255, 206, 86, 0.5)',  // Yellow
-            'rgba(75, 192, 192, 0.5)',  // Teal
-            'rgba(204, 255, 204, 0.7)',  // Pastel Green
-            'rgba(255, 204, 255, 0.7)',  // Pastel Purple
+//     // Create a bar chart using Chart.js Node Canvas
+//     const configuration = {
+//       type: 'bar',
+//       data: {
+//         labels: labels,
+//         datasets: [{
+//           label: 'Data from MongoDB',
+//           data: values,
+//           backgroundColor: [
+//             'rgba(255, 99, 132, 0.5)',   // Red
+//             'rgba(54, 162, 235, 0.5)',  // Blue
+//             'rgba(255, 206, 86, 0.5)',  // Yellow
+//             'rgba(75, 192, 192, 0.5)',  // Teal
+//             'rgba(204, 255, 204, 0.7)',  // Pastel Green
+//             'rgba(255, 204, 255, 0.7)',  // Pastel Purple
             
-          ],
-        }],
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true,
-          },
-        },
-        plugins: {
-          legend: {
-            display: true,
-          },
-        },
-      },
-    };
+//           ],
+//         }],
+//       },
+//       options: {
+//         scales: {
+//           y: {
+//             beginAtZero: true,
+//           },
+//         },
+//         plugins: {
+//           legend: {
+//             display: true,
+//           },
+//         },
+//       },
+//     };
 
-    // Render the chart
-    const image = await canvasRenderService.renderToBuffer(configuration);
-    res.contentType('image/png').send(image);
-  } catch (error) {
-    console.error(error);
-    res.status(500).send('Error retrieving data from MongoDB.');
-  }
-});
+//     // Render the chart
+//     const image = await canvasRenderService.renderToBuffer(configuration);
+//     res.contentType('image/png').send(image);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).send('Error retrieving data from MongoDB.');
+//   }
+// });
 
 
 app.listen(PORT, () => {
