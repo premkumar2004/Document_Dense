@@ -386,5 +386,5 @@ app.get('/chart', async (req, res) => {
 
 
 app.listen(PORT, () => {
-  console.log(`Server is running on http://patent1.onrender.com`);
+  console.log(`Server is running on http://patent12.onrender.com`);
 });
